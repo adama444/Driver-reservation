@@ -43,10 +43,9 @@ class Conducteur(Utilisateur):
 def ajouter_conducteur(conducteur):
     with open('database.json', 'r+') as file:
         base_de_donnees = json.load(file)
-        non_vide = len(base_de_donnees['conducteurs']) == 1 and \
-                   base_de_donnees['conducteurs'][-1]["id_utilisateur"] >= 1
+        non_vide = len(base_de_donnees['conducteurs']) == 1
         if conducteur.id_utilisateur is None and non_vide:
-            conducteur.id_utilisateur += base_de_donnees['conducteurs'][-1]["id_utilisateur"]
+            conducteur.id_utilisateur = int(base_de_donnees['conducteurs'][-1]["id_conducteur"]) + 1
         else:
             conducteur.id_utilisateur = 1
         base_de_donnees['conducteurs'].append(conducteur.dict())

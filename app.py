@@ -7,18 +7,22 @@ print("initialisation ...")
 
 
 def connecter():
+    existe = False
     print('Connexion ...')
     mail = input("mail: ")
     mot_de_passe = input("mot de passe: ")
-
     with open('database.json', 'r') as file:
         base_de_donnees = json.load(file)
-        valider_mail = mail in base_de_donnees['clients'].items() or \
-                       mail in base_de_donnees['clients'].items()
-        valider_mot_de_passe = mot_de_passe in base_de_donnees['clients'].items() or \
-                       mot_de_passe in base_de_donnees['clients'].items()
-        if valider_mail and valider_mot_de_passe:
-            print('connecter avec succès')
+        for user in base_de_donnees['clients']:
+            if user["mail"] == mail and user['mot_de_passe'] == mot_de_passe:
+                print('connecter avec succès')
+                existe = True
+        for user in base_de_donnees['conducteurs']:
+            if user["mail"] == mail and user['mot_de_passe'] == mot_de_passe:
+                print('connecter avec succès')
+                existe = True
+    if not existe:
+        print("Informations incorrectes !")
 
 
 

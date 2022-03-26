@@ -35,10 +35,9 @@ class Client(Utilisateur):
 def ajouter_client(client):
     with open('database.json', 'r+') as file:
         base_de_donnees = json.load(file)
-        non_vide = len(base_de_donnees['clients']) == 1 and \
-                   base_de_donnees['clients'][-1]["id_utilisateur"] >= 1
+        non_vide = len(base_de_donnees['clients']) == 1
         if client.id_utilisateur is None and non_vide:
-            client.id_utilisateur += base_de_donnees['clients'][-1]["id_utilisateur"]
+            client.id_utilisateur = int(base_de_donnees['clients'][-1]["id_client"]) + 1
         else:
             client.id_utilisateur = 1
         base_de_donnees['clients'].append(client.dict())
