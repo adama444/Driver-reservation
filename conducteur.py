@@ -41,6 +41,7 @@ class Conducteur(Utilisateur):
 
 
 def ajouter_conducteur(conducteur):
+    """ fonction pour l'ajout d'un nouveau conducteur dans la base de données JSON """
     with open('database.json', 'r+') as file:
         base_de_donnees = json.load(file)
         non_vide = len(base_de_donnees['conducteurs']) == 1
@@ -52,3 +53,24 @@ def ajouter_conducteur(conducteur):
         file.seek(0)
         json.dump(base_de_donnees, file)
     return True
+
+
+def trouver_conducteur(mail, mot_de_passe):
+    """ fonction qui cherche un conducteur ayant un mail et un mot de passe """
+    existe = False
+    with open('database.json', 'r') as file:
+        base_de_donnees = json.load(file)
+        for user in base_de_donnees['conducteurs']:
+            if user["mail"] == mail and user['mot_de_passe'] == mot_de_passe:
+                print('connecter avec succès')
+                existe = True
+    return existe
+
+
+def liste_conducteurs():
+    conducteurs = []
+    with open('database.json', 'r') as file:
+        base_de_donnees = json.load(file)
+        for conducteur in base_de_donnees['conducteurs']:
+            conducteurs.append(conducteur)
+    return conducteurs

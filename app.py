@@ -3,30 +3,26 @@ import json
 import client
 import conducteur
 
+""" programme principal """
 print("initialisation ...")
 
 
 def connecter():
-    existe = False
+    """ fonction pour la connexion d'un utilisateur """
     print('Connexion ...')
     mail = input("mail: ")
     mot_de_passe = input("mot de passe: ")
-    with open('database.json', 'r') as file:
-        base_de_donnees = json.load(file)
-        for user in base_de_donnees['clients']:
-            if user["mail"] == mail and user['mot_de_passe'] == mot_de_passe:
-                print('connecter avec succès')
-                existe = True
-        for user in base_de_donnees['conducteurs']:
-            if user["mail"] == mail and user['mot_de_passe'] == mot_de_passe:
-                print('connecter avec succès')
-                existe = True
-    if not existe:
-        print("Informations incorrectes !")
-
+    if client.trouver_client(mail, mot_de_passe) or \
+            conducteur.trouver_conducteur(mail, mot_de_passe):
+        print("connecter avec succès !")
+        return True
+    else:
+        print("informations incorrectes !")
+        return False
 
 
 def creer_compte():
+    """ fonction pour la création d'un compte """
     print("Création d'un nouveau compte ...")
     creer_client = input("Client ? (O/n)\n")
     if creer_client == 'O':
@@ -89,7 +85,19 @@ def creer_compte():
         print("conducteur crée avec succès !")
 
 
-if input("se connecter ? (O/n)\n") == 'O':
-    connecter()
-else:
+def afficher_menu():
+    print("1 - afficher la liste des conducteurs")
+    print("2 - afficher la liste des clients")
+    print("3 - réserver un conducteur")
+    print("4 - se déconnecter")
+
+
+# fil d'exécution principale
+autoriser = False
+if str.lower(input("se connecter ? (O/n)\n")) == 'n':
     creer_compte()
+else:
+    autoriser = connecter()
+
+if autoriser:
+    afficher_menu()

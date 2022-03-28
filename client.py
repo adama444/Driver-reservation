@@ -44,3 +44,23 @@ def ajouter_client(client):
         file.seek(0)
         json.dump(base_de_donnees, file)
     return True
+
+
+def trouver_client(mail, mot_de_passe):
+    existe = False
+    with open('database.json', 'r') as file:
+        base_de_donnees = json.load(file)
+        for user in base_de_donnees['clients']:
+            if user["mail"] == mail and user['mot_de_passe'] == mot_de_passe:
+                print('connecter avec succès')
+                existe = True
+    return existe
+
+
+def liste_clients():
+    clients = []
+    with open('database.json', 'r') as file:
+        base_de_donnees = json.load(file)
+        for client in base_de_donnees['clients']:
+            clients.append(client)
+    return clients
