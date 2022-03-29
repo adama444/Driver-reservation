@@ -18,7 +18,7 @@ Le but du projet est de concevoir une api en python permettant de trouver pour u
 - Filtrer la recherche en fonction de la disponibilité du conducteur et celui du client qui effectue la recherche
 - Permettre aux conducteurs de définir leur préférence quant aux voitures qu'ils aiment conduire  
 
-## Comment utiliser le projet
+## Description des modules
 
 - Le module *mail.py* gère la gestion de l'envoi des emails aux clients
 - Le module *client.py* contient la classe Client et les différents cas d'utilisations d'un client
