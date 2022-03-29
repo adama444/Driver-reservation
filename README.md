@@ -22,6 +22,7 @@ Le but du projet est de concevoir une api en python permettant de trouver pour u
 
 - Le module *mail.py* gère la gestion de l'envoi des emails aux clients
 - Le module *client.py* contient la classe Client et les différents cas d'utilisations d'un client
+- Le module *conducteur.py* contient la classe Conducteur et les différents cas d'utilisations d'un conducteur
 - Le module *app.py* est le module où les tests ont été effectuer. C'est la porte d'entrée principale du projet
 
 ## Contributeurs
