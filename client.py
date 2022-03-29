@@ -25,7 +25,10 @@ class Client(Utilisateur):
             "mot_de_passe": self.mot_de_passe,
             "age": self.age,
             "profession": self.profession,
-            "localisation": self.localisation,
+            "localisation": {
+                "latitude": self.localisation[0],
+                "longitude": self.localisation[1]
+            },
             "est_marie": self.est_marie,
             "nombre_enfants": self.nombre_enfants
         }

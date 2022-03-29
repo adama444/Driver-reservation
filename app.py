@@ -2,6 +2,8 @@ import json
 
 import client
 import conducteur
+import localisation
+import mail
 
 """ programme principal """
 print("initialisation ...")
@@ -34,7 +36,10 @@ def creer_compte():
         mail = input("mail: ")
         age = input("age: ")
         profession = input("profession: ")
-        localisation = input("localisation: ")
+        localisation = (
+            input("localisation [latitude]: "),
+            input("localisation [longitude]: ")
+        )
         est_marie = input("Etes vous marié ? (O/n)\n")
         nombre_enfants = 0
         if est_marie == 'O':
@@ -62,10 +67,17 @@ def creer_compte():
         mail = input("mail: ")
         age = input("age: ")
         profession = input("profession: ")
-        localisation = input("localisation: ")
+        localisation = (
+            input("localisation [latitude]: "),
+            input("localisation [longitude]: ")
+        )
+
         numero_permis = input("numéro du permis: ")
         annee_experience = input("année d'expériences: ")
-        disponibilite = input("disponibilité: ")
+        disponibilite = (
+            input("disponibilité [de]: "),
+            input("disponibilité [a]: ")
+        )
         categorie_permis = input("catégorie de permis: ")
         nouveau_conducteur = conducteur.Conducteur(None,
                                                    prenom,
@@ -85,19 +97,13 @@ def creer_compte():
         print("conducteur crée avec succès !")
 
 
-def afficher_menu():
-    print("1 - afficher la liste des conducteurs")
-    print("2 - afficher la liste des clients")
-    print("3 - réserver un conducteur")
-    print("4 - se déconnecter")
-
-
 # fil d'exécution principale
-autoriser = False
-if str.lower(input("se connecter ? (O/n)\n")) == 'n':
-    creer_compte()
-else:
-    autoriser = connecter()
+# autoriser = False
+# if str.lower(input("se connecter ? (O/n)\n")) == 'n':
+#     creer_compte()
+# else:
+#     autoriser = connecter()
 
-if autoriser:
-    afficher_menu()
+print(localisation.trouver_coordonnees_depuis_adresse("UCAO-UUT"))
+print(localisation.trouver_adresse_depuis_coordonnees(6.2308526, 1.1015976053714729))
+print(mail.envoyer_mail("as91404togo@gmail.com", "ultime test"))

@@ -31,10 +31,16 @@ class Conducteur(Utilisateur):
             "mot_de_passe": self.mot_de_passe,
             "age": self.age,
             "profession": self.profession,
-            "localisation": self.localisation,
+            "localisation": {
+                "latitude": self.localisation[0],
+                "longitude": self.localisation[1]
+            },
             "numero_permis": self.numero_permis,
             "annee_experience": self.annee_experience,
-            "disponibilite": self.disponibilite,
+            "disponibilite": {
+                "de": self.disponibilite[0],
+                "a": self.disponibilite[1]
+            },
             "categorie_permis": self.categorie_permis
         }
         return dictionaire
