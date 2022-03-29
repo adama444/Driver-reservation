@@ -1,5 +1,8 @@
 import json
 
+import conducteur
+import localisation
+import mail
 from utilisateur import Utilisateur
 
 
@@ -67,3 +70,25 @@ def liste_clients():
         for client in base_de_donnees['clients']:
             clients.append(client)
     return clients
+
+
+def donner_client(id_client):
+    with open('database.json', 'r') as file:
+        base_de_donnees = json.load(file)
+        client = None
+        for user in base_de_donnees['clients']:
+            if user["id_client"] == id_client:
+                client = user
+    return client
+
+
+def rechercher_conducteur(client):
+    liste_conducteurs = conducteur.liste_conducteurs()
+    point_a = (client["localisation"]['latitude'], client["localisation"]['longitude'])
+    liste_distances = localisation.distance_la_plus_courte(point_a, liste_conducteurs)
+    liste_conducteurs_proches = []
+    for conducteur_ in liste_conducteurs:
+        if conducteur_["id_conducteur"] == liste_distances[0]["id"]:
+            liste_conducteurs_proches.append(conducteur_)
+    conducteur_selectionne = liste_conducteurs_proches[0]
+    mail.envoyer_mail("as91404togo@gmail.com", conducteur_selectionne)

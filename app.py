@@ -98,12 +98,17 @@ def creer_compte():
 
 
 # fil d'exécution principale
-# autoriser = False
-# if str.lower(input("se connecter ? (O/n)\n")) == 'n':
-#     creer_compte()
-# else:
-#     autoriser = connecter()
+autoriser = False
+if str.lower(input("se connecter ? (O/n)\n")) == 'n':
+    creer_compte()
+else:
+    autoriser = connecter()
 
-print(localisation.trouver_coordonnees_depuis_adresse("UCAO-UUT"))
-print(localisation.trouver_adresse_depuis_coordonnees(6.2308526, 1.1015976053714729))
-print(mail.envoyer_mail("as91404togo@gmail.com", "ultime test"))
+if autoriser:
+    client.rechercher_conducteur(client.donner_client(1))
+    # print(localisation.trouver_coordonnees_depuis_adresse("UCAO-UUT"))
+    # print(localisation.trouver_adresse_depuis_coordonnees(6.2308526, 1.1015976053714729))
+    # print(mail.envoyer_mail("as91404togo@gmail.com", "ultime test"))
+
+
+

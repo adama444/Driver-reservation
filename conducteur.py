@@ -80,3 +80,10 @@ def liste_conducteurs():
         for conducteur in base_de_donnees['conducteurs']:
             conducteurs.append(conducteur)
     return conducteurs
+
+
+def donner_conducteur(id_conducteur):
+    with open('database.json', 'r') as file:
+        base_de_donnees = json.load(file)
+        client = base_de_donnees['conducteurs'][id_conducteur]
+    return client
