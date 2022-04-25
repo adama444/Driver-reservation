@@ -2,10 +2,47 @@
 ## Description
 Le but du projet est de concevoir une api en python permettant de trouver pour un client en fonction de sa position le conducteur le plus proche pour qu'il puisse effectuer ses courses.
 
-## Prerequis
+## Prérequis
 
 - Installer *Python 3.10+*
 - Installer *geopy*
+
+## Structure de la base de données
+
+Ici l'on utilisera le fichier JSON nommé *database.json* comme base de données principale. La structure du fichier sera de la sorte:
+```json
+{
+  "clients": [
+	  {
+	  	"id_client": 1,
+	  	"prenom": "adama",
+	  	"nom": "samake",
+	  	...
+	  }, 
+  ...
+  ],
+  "conducteurs": [
+	  {
+	  	"id_client": 1,
+	  	"prenom": "adama",
+	  	"nom": "samake",
+	  	...
+	  }, 
+	  ...
+  ],
+  "voitures": [
+	  {
+	  	"id_voiture": 1,
+	  	"id_proprietaire": 1,
+	  	"marque": "toyota",
+	  	"modele": "yaris",
+	  	...
+	  }, 
+	  ...
+  ]
+}
+```
+
 
 ## Fonctionnalités
 
@@ -20,9 +57,10 @@ Le but du projet est de concevoir une api en python permettant de trouver pour u
 
 ## Description des modules
 
-- Le module *mail.py* gère la gestion de l'envoi des emails aux clients
+- Le module *mail.py* gère la gestion de l'envoi des mails aux clients
 - Le module *client.py* contient la classe Client et les différents cas d'utilisations d'un client
 - Le module *conducteur.py* contient la classe Conducteur et les différents cas d'utilisations d'un conducteur
+- Le module *localisation.py* qui gère tous ce qui est relatif à la géolocalisation
 - Le module *app.py* est le module où les tests ont été effectuer. C'est la porte d'entrée principale du projet
 
 ## Contributeurs
